@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Slider
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div id="conteneur">
+			<h1>Ajout d'un événement dans le Slider</h1>
+
+			{% if form is defined  %}
+				{{ include('slider/_form.html.twig') }}
+
+			{% endif %}
+
+			<a href="{{ path('app_slider_index') }}">Retour à la liste</a>
+		</div>
+	</main>
+	<script>
+		const formEvent = document.querySelector("#slider_id");
+		const formVide = document.querySelectorAll(".formVide");
+
+		formVide.forEach(e=>e.style.display = 'none')
+
+		function checkIfVide(){
+			for(i=0;i<formVide.length;i++){
+				if(formEvent.value=='1'){
+					formVide[i].style.display = 'inline';
+				}
+				else{
+					formVide[i].style.display = 'none';
+				}
+			}
+		}
+
+		checkIfVide()
+
+		formEvent.addEventListener('change',()=>{
+			checkIfVide()
+		})
+	</script>
+{% endblock %}

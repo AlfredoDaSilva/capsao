@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Slider
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div id="conteneur">
+			<h2>Liste événements dans le Slider</h2>
+
+			<a class="btn btnPrimary" href="{{ path('app_slider_new') }}">Ajouter un événement au slider</a>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Lien</th>
+						<th>Image</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for slider in sliders|reverse %}
+						<tr>
+							<td>{{ slider.title }}</td>
+							<td><a href="{{ slider.link }}">{{ slider.link }}</a></td>
+							<td>
+								<img id="imgSlider" src="{{ slider.urlImg }}"/></td>
+							<td id="btnSlider">
+								<a class="btn btnPrimary" href="{{ path('app_slider_edit', {'id': slider.id}) }}">Modifier</a>
+								{{ include('slider/_delete_form.html.twig') }}
+							</td>
+						</tr>
+
+					{% else %}
+						<tr>
+							<td colspan="9">Aucune information trouvée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>	
+
+
+{% endblock %}

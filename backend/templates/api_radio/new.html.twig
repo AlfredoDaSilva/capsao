@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter Radio
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div id="conteneur">
+			<h2>Ajouter nouvelle radio</h2>
+
+			{{ include('api_radio/_form.html.twig') }}
+
+			<a href="{{ path('app_api_radio_index') }}">Retour à la liste</a>
+		</div>
+	</main>
+{% endblock %}

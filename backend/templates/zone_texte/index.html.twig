@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zone Texte
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div id="conteneur">
+			<h2>Texte page d'accueil</h2>
+
+			{{ include('zone_texte/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+		</div>
+	</main>
+{% endblock %}

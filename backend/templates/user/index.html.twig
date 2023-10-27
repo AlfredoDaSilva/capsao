@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste Utilisateurs
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div id="conteneur">
+			<h2>Liste des Utilisateurs</h2>
+
+			<a href="{{ path('app_register') }}">Ajout d'un nouvel utilisateur</a>
+			
+			<table class="table" class="thead">
+				<thead>
+					<tr>
+						<th>E-mail</th>
+						<th>Roles</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users|reverse %}
+						<tr>
+							<td>{{ user.email }}</td>
+							<td>
+								{% if user.roles == ["ROLE_ADMIN","ROLE_USER"] %}
+									Admin
+								{% endif %}
+							</td>
+							<td>{{ include('user/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">Aucune information trouvée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			
+		</div>
+	</main>
+{% endblock %}

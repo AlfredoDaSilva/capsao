@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Slider
+{% endblock %}
+
+{% block body %}
+<main>
+	<div id="conteneur">
+		<h2>Modification du Slider</h2>
+
+		{{ include('slider/_form.html.twig', {'button_label': 'Ajouter l\'événement'}) }}
+
+    {{ include('slider/_delete_form.html.twig') }}
+
+    <a href="{{ path('app_slider_index') }}">Retour à la liste</a>
+    </div>
+</main>
+
+<script>
+  const formEvent = document.querySelector("#slider_id");
+  const options = formEvent.querySelectorAll("option");
+  const formVide = document.querySelectorAll(".formVide");
+
+  formVide.forEach(e=>e.style.display = 'none')
+
+  function checkIfVide(){
+    for(i=0;i<formVide.length;i++){
+      if(formEvent.value=='1'){
+        formVide[i].style.display = 'inline';
+      }
+      else{
+        formVide[i].style.display = 'none';
+      }
+    }
+  }
+
+  options.forEach(element => {
+    if(element.text===formVide[4].value){
+      formEvent.value = element.value
+    }
+  });
+
+  checkIfVide()
+
+  formEvent.addEventListener('change',()=>{
+    checkIfVide()
+  })
+
+  
+</script>
+{% endblock %}

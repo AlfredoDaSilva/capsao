@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Podcasts
+{% endblock %}
+
+{% block body %}
+	<main>
+		<div id="conteneur">
+			<h2>Liste des Podcasts</h2>
+
+			<a href="{{ path('app_api_podcast_new') }}">Ajouter un nouveau podcast</a>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Lien</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for api_podcast in api_podcasts|reverse %}
+						<tr>
+							<td><a href="{{ api_podcast.link }}">{{ api_podcast.link }}</a></td>
+							<td>
+								<a class="btn btnPrimary" href="{{ path('app_api_podcast_edit', {'id': api_podcast.id}) }}">Modifier</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">Aucune information trouvée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			
+		</div>
+	</main>
+{% endblock %}
